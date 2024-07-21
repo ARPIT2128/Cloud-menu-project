@@ -1,0 +1,25 @@
+.location-container {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.location-header {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.location-details {
+    margin-top: 10px;
+}
+
+.location-details p {
+    margin-bottom: 5px;
+}
+
+.loading-message {
+    font-style: italic;
+    color: #888;
+}

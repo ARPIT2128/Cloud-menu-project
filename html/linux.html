@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Docker Webpage</title>
+    <style>
+        body {
+            background-color: whitesmoke;
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        .navbar a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        input[type="text"] {
+            width: 50%;
+            margin-bottom: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #d1 {
+            color: black;
+            white-space: pre-wrap;
+            text-align: left;
+            padding-left: 18%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <a href="http://13.200.128.50/">Home</a>
+    </div>
+
+    <div class="container">
+        <h2>Command Executor</h2>
+        <p>
+            Command: <input id="input" required="true" type="text" placeholder="Enter your required command" />
+            <button class="button" onclick="lw()">Click here</button>
+        </p>
+    </div>
+    <pre>
+        <h2>
+            <div id="d1"></div>
+        </h2>
+    </pre>
+
+    <script>
+        function lw() {
+            var command = document.getElementById("input").value;
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "/cgi-bin/linux.py?cmd=" + encodeURIComponent(command), true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    document.getElementById("d1").innerText = xhr.responseText;
+                }
+            };
+            xhr.send();
+        }
+    </script>
+</body>
+
+</html>

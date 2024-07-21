@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pose Detection</title>
+    <style>
+        .video-container {
+            margin: 20px auto;
+            width: 80%;
+            max-width: 800px;
+        }
+
+        #video {
+            width: 100%;
+            height: auto;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .stop-button {
+            padding: 10px 20px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Pose Detection</h1>
+
+    <!-- Video stream container -->
+    <div class="video-container">
+        <img id="video" src="{{ url_for('pose_video_feed') }}" alt="Pose Detection Video Stream" />
+    </div>
+
+    <!-- Display T-pose status -->
+    <p>T-pose detected: <span id="tposeStatus"></span></p>
+
+    <!-- Stop button -->
+    <div class="button-container">
+        <button class="stop-button" onclick="stopCamera()">Stop Camera</button>
+    </div>
+
+    <!-- Link back to home page -->
+    <a href="http://localhost:3000">Back to Home Page</a>
+
+    <!-- JavaScript to update T-pose status -->
+    <script>
+        // Function to stop the camera feed
+        async function stopCamera() {
+            const response = await fetch('/stop_camera_pose');
+            const data = await response.json();
+            if (data.status === 'Camera stopped') {
+                alert('Camera stopped successfully.');
+            } else {
+                alert('Failed to stop the camera.');
+            }
+        }
+
+        // Update T-pose status every second
+        setInterval(async () => {
+            const response = await fetch('/tpose_status');
+            const data = await response.json();
+            document.getElementById('tposeStatus').textContent = data.tpose_detected ? 'Yes' : 'No';
+        }, 1000); // Update every second
+    </script>
+</body>
+
+</html>

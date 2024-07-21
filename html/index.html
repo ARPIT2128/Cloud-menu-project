@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        /* Header styles */
+        .header {
+            background-color: #4682B4;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin-right: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .header a:hover {
+            background-color: #555;
+        }
+
+        /* Main content styles */
+        .content {
+            padding: 100px 20px 20px 20px;
+            /* Adjust for the fixed header */
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+
+        .btn {
+            align-items: center;
+            background-image: linear-gradient(144deg, #AF40FF, #5B42F3 50%, #00DDEB);
+            border: 0;
+            border-radius: 8px;
+            box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+            box-sizing: border-box;
+            color: #FFFFFF;
+            display: flex;
+            font-family: Phantomsans, sans-serif;
+            font-size: 20px;
+            justify-content: center;
+            line-height: 1em;
+            max-width: 100%;
+            min-width: 140px;
+            padding: 3px;
+            text-decoration: none;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            white-space: nowrap;
+            cursor: pointer;
+            margin: auto;
+        }
+
+        .btn:active,
+        .btn:hover {
+            outline: 0;
+        }
+
+        .btn span {
+            background-color: rgb(5, 6, 45);
+            padding: 16px 24px;
+            border-radius: 6px;
+            width: 100%;
+            height: 100%;
+            transition: 300ms;
+        }
+
+        .btn:hover span {
+            background: none;
+        }
+
+        @media (min-width: 768px) {
+            .btn {
+                font-size: 24px;
+                min-width: 196px;
+            }
+        }
+
+        div {
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <div class="header">
+        <a href="http://13.200.128.50/">Home</a>
+    </div>
+
+    <!-- Main content -->
+    <div class="content">
+        <h1>Welcome to Menu Page</h1>
+        <div>
+            <button class="btn" role="button" onclick="goToGoogleSearch()"><span class="text">Go to Google
+                    Search</span></button>
+        </div>
+        <div><button class="btn" role="button" onclick="sendBulkEmail()"><span class="text">Send Bulk
+                    Email</span></button></div>
+        <div><button class="btn" role="button" onclick="geoCoordinates()"><span class="text">Geo
+                    Coordinates</span></button></div>
+        <div><button class="btn" role="button" onclick="linuxWebUI()"><span class="text">Linux Terminal</span></button>
+        </div>
+        <div><button class="btn" role="button" onclick="dockerAutomation()"><span class="text">Docker
+                    Automation</span></button></div>
+        <div><button class="btn" role="button" onclick="htmlInterpreter()"><span class="text">Live HTML
+                    Interpreter</span></button></div>
+        <div><button class="btn" role="button" onclick="pythonSMS()"><span class="text">SMS through
+                    python</span></button></div>
+    </div>
+
+    <!-- JavaScript to handle button clicks -->
+    <script>
+        // Functions to handle button clicks
+        function goToGoogleSearch() {
+            window.location.href = "google_search.html";
+        }
+        function sendBulkEmail() {
+            window.location.href = "send_bulk_email.html";
+        }
+        function geoCoordinates() {
+            window.location.href = "geo_coordinates.html";
+        }
+        function linuxWebUI() {
+            window.location.href = "linux.html";
+        }
+        function dockerAutomation() {
+            window.location.href = "docker.html";
+        }
+        function htmlInterpreter() {
+            window.location.href = "html_live_interpreter.html";
+        }
+        function pythonSMS() {
+            window.location.href = "python_sms.html";
+        }
+    </script>
+</body>
+
+</html>

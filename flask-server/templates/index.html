@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Finger Counter</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+        }
+
+        #video_feed {
+            max-width: 80%;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #finger_count {
+            margin-top: 20px;
+            font-size: 24px;
+        }
+
+        #stopCameraButton {
+            padding: 10px 20px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Video Stream and Finger Count</h1>
+
+    <!-- Video stream container -->
+    <img id="video" src="{{ url_for('video_feed') }}" alt="Video Stream" />
+
+    <!-- Display finger count -->
+    <p>Finger Count: <span id="fingerCount"></span></p>
+
+    <!-- Link back to home page -->
+    <a href="http://localhost:3000">Back to Home Page</a>
+
+    <!-- Stop Camera Button -->
+    <button id="stopCameraButton">Stop Camera</button>
+
+    <!-- JavaScript to update finger count and handle stop camera -->
+    <script>
+        // Update finger count every second
+        setInterval(async () => {
+            const response = await fetch('/finger_count');
+            const data = await response.json();
+            document.getElementById('fingerCount').textContent = data.finger_count;
+        }, 1000); // Update every second
+
+        // Handle stop camera button click
+        document.getElementById('stopCameraButton').addEventListener('click', async () => {
+            const response = await fetch('/stop_camera');
+            const data = await response.json();
+            if (data.status === 'Camera stopped') {
+                document.getElementById('video').src = ''; // Clear the video stream
+                alert('Camera has been stopped.');
+            }
+        });
+    </script>
+</body>
+
+</html>
